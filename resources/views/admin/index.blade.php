@@ -115,29 +115,31 @@
 
         <!-- Main Content -->
         <main class="main-content">
+
             <header class="app-header">
-            <h2>Dashboard Admin</h2>
-            <div class="header-right">
-                <img src="{{ asset('img/profil.png') }}" alt="Profil Admin" class="profile-icon" id="profile-icon">
-                <div class="dropdown" id="profile-dropdown">
-                    <button class="dropdown-item" onclick="toggleSubmenu()">Pengaturan Akun ▸</button>
-                    <div class="submenu-items" id="submenu-items">
-                        <button onclick="bukaModalPassword()">Ganti Kata Sandi</button>
+                <button class="sidebar-toggle" aria-label="Toggle Sidebar">
+                    <span style="font-size:28px;">&#9776;</span>
+                </button>
+                <h2>Dashboard Admin</h2>
+                <div class="header-right">
+                    <img src="{{ asset('img/profil.png') }}" alt="Profil Admin" class="profile-icon" id="profile-icon">
+                    <div class="dropdown" id="profile-dropdown">
+                        <button class="dropdown-item" onclick="toggleSubmenu()">Pengaturan Akun ▸</button>
+                        <div class="submenu-items" id="submenu-items">
+                            <button onclick="bukaModalPassword()">Ganti Kata Sandi</button>
+                        </div>
+                        <button class="dropdown-item" id="btn-logout">Logout</button>
                     </div>
-                    <button class="dropdown-item" id="btn-logout">Logout</button>
                 </div>
-            </div>
             </header>
+
+            <!-- KPI Cards -->
 
             <!-- KPI Cards -->
             <section class="grid-kpi">
                 <div class="kpi-card">
                     <div class="kpi-title">Total Produk</div>
                     <div class="kpi-value" id="kpi-total-produk">{{ $totalProduk }}</div>
-                </div>
-                <div class="kpi-card">
-                    <div class="kpi-title">Produk Stok Habis</div>
-                    <div class="kpi-value" id="kpi-stok-habis">{{ $stokHabis }}</div>
                 </div>
                 <div class="kpi-card">
                     <div class="kpi-title">Rata-rata Rating (bulan ini)</div>
@@ -153,21 +155,6 @@
                 </div>
             </div>
 
-            <!-- Stok Rendah -->
-            <div class="card">
-                <div class="card-title">Stok Terendah (Top 3)</div>
-                <ul class="low-stock-list" id="low-stock-list">
-                    @foreach($stokRendah as $product)
-                        <li>
-                            <div class="card-product" style="cursor:pointer;" onclick="window.location.href='{{ route('user.detail_product', $product->slug) }}'">
-                                <img src="{{ asset('storage/' . $product->image) }}" alt="Tas Anyaman">
-                                <h4>{{ $product->name }}</h4>
-                                <p>Sisa stok:  {{ $product->stock }}</p>
-                            </div>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
         </main>
         
         <!-- Form logout hidden -->

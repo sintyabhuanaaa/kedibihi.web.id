@@ -142,6 +142,7 @@
     </style>
 </head>
 <body>
+
     <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
         <div class="logo">
@@ -155,9 +156,12 @@
 
     <!-- Main Content -->
     <main class="main-content" id="content">
-    <header class="app-header">
-    <h2>Manajemen Produk</h2>
-    </header>
+        <header class="app-header">
+            <button class="sidebar-toggle" aria-label="Toggle Sidebar">
+                <span style="font-size:28px;">&#9776;</span>
+            </button>
+            <h2>Manajemen Produk</h2>
+        </header>
 
     <!-- Form Tambah Produk -->
     <div class="card">
@@ -182,10 +186,6 @@
             <label for="price_max">Harga Maksimal</label>
             <input type="number" id="price_max" name="price_max" required>
 
-
-            <label for="stok">Stok</label>
-            <input type="number" id="stok" name="stock" required>
-
             <label for="description">Deskripsi Produk</label>
             <textarea id="description" name="description" placeholder="Tulis deskripsi produk..." required></textarea>
 
@@ -209,7 +209,6 @@
                         <th>Gambar</th>
                         <th style="width: 200px;">Nama Produk</th>
                         <th style="width: 150px;">Harga</th>
-                        <th style="width: 100px;">Stok</th>
                         <th style="width: 300px;">Deskripsi</th>
                         <th style="width: 200px;">Link TikTok Shop</th>
                         <th>Aksi</th>
@@ -233,13 +232,10 @@
                             Rp {{ number_format($product->price_max, 0, ',', '.') }}
                         </td>
                         <td>
-                            {{ $product->stock }}
-                        </td>
-                        <td>
                             {{ $product->description }}
                         </td>
                         <td>
-                            {{ $product->tiktok_link }}
+                            <a href="{{ $product->tiktok_link }}" target="_blank">Link TikTok Shop</a>
                         </td>
                         <td>
                             <a href="{{ route('products.edit', $product) }}" class="btn-edit">Edit</a>
@@ -311,12 +307,6 @@
         });
     </script>
 
-    <script>
-        // Toggle Sidebar
-        document.getElementById("sidebarToggle").addEventListener("click", function() {
-            document.getElementById("sidebar").classList.toggle("active");
-            document.getElementById("content").classList.toggle("shift");
-        });
-    </script>
+    <script src="{{ asset('js/script.js') }}"></script>
 </body>
 </html>

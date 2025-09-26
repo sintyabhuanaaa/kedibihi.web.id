@@ -47,22 +47,27 @@ function tutupModalProfil() {
     if (overlay) overlay.style.display = "none";
 }
 
-// --- Sidebar Toggle (Mobile/Tablet) ---
-const sidebarToggle = document.getElementById("sidebar-toggle");
-const sidebar = document.getElementById("sidebar");
 
-if (sidebarToggle && sidebar) {
-    sidebarToggle.addEventListener("click", () => {
-        sidebar.classList.toggle("closed");
+// --- Sidebar Toggle (Universal, support multiple buttons) ---
+const sidebar = document.getElementById("sidebar");
+const sidebarToggles = document.querySelectorAll(".sidebar-toggle");
+if (sidebar && sidebarToggles.length > 0) {
+    sidebarToggles.forEach(btn => {
+        btn.addEventListener("click", function(e) {
+            e.stopPropagation();
+            sidebar.classList.toggle("closed");
+        });
     });
 }
+
 
 // --- Tutup Sidebar Otomatis kalau klik di luar (opsional) ---
 document.addEventListener("click", (e) => {
     if (
         sidebar &&
         !sidebar.contains(e.target) &&
-        !sidebarToggle.contains(e.target)
+        !e.target.classList.contains("sidebar-toggle") &&
+        !e.target.closest(".sidebar-toggle")
     ) {
         if (window.innerWidth <= 768) {
             // hanya berlaku di mobile/tablet

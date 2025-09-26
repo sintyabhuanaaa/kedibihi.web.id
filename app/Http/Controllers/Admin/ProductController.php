@@ -36,7 +36,6 @@ class ProductController extends Controller
             'price_min'   => 'required|integer|min:0',
             'price_max'   => 'required|integer|gte:price_min',
             'description' => 'required|string',
-            'stock' => 'required|integer',
             'tiktok_link' => 'required|url',
             'image' => 'required|image|mimes:jpg,jpeg,png|max:2048',
         ]);
@@ -52,7 +51,6 @@ class ProductController extends Controller
             'price_min'   => $request->price_min,
             'price_max'   => $request->price_max,
             'description' => $request->description,
-            'stock' => $request->stock,
             'tiktok_link' => $request->tiktok_link,
             'image' => $path,
         ]);
@@ -86,7 +84,6 @@ class ProductController extends Controller
             'name' => 'required|string|max:255',
             'price_min'   => 'required|integer|min:0',
             'price_max'   => 'required|integer|gte:price_min',
-            'stock' => 'required|numeric',
             'description' => 'required|string',
             'tiktok_link' => 'required|url',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -95,7 +92,6 @@ class ProductController extends Controller
         $product->name = $request->name;
         $product->price_min = $request->price_min;
         $product->price_max = $request->price_max;
-        $product->stock = $request->stock;
         $product->description = $request->description;
         $product->tiktok_link = $request->tiktok_link;
 
